@@ -15,15 +15,27 @@ class App extends React.Component{
       current: {level:1, set:1, qtype:1, q:1,chance:1,},
     };
     this.changeQuestion = this.changeQuestion.bind(this)
+    this.changeSet = this.changeSet.bind(this)
   }
 
-
+  changeSet(current){
+    current.set = current.set += 1
+    console.log(current.set)
+    current.qtype = 1
+    current.q = 1
+    current.chance = 1
+    this.setState({current:current})
+  }
 
   changeQuestion(result) {
       let cur = this.state.current;
       let changeQType = false;
+    
       if (result) {
         if (cur.q === 3) {
+          if(cur.q === 3 && cur.qtype === 3) {
+            this.changeSet(cur)
+          } 
           changeQType = true;
         } else {
           // Check questions
@@ -33,14 +45,20 @@ class App extends React.Component{
       } else {
         // last chance
         if (cur.chance === 3) {
+/*          console.log('hit last chance. qtype: ' + cur.qtype)
+          if(cur.qtype === 3) console.log('last question + last chance')*/
           if (cur.q === 3) changeQType = true;
           cur.q += 1;
           cur.chance = 1;
           
         } else {
           // one more chance  
+          if(cur.q === 3 && cur.qtype === 3) {
+            this.changeSet(cur)
+          } else {
           cur.chance = (cur.chance) += 1;
           if (cur.q === 3) changeQType = true;
+          }
         }
       }
 
