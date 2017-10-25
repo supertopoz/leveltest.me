@@ -1,0 +1,15 @@
+.q {
+  background-color: teal;
+  color: white;
+  padding: 5px;
+  width: 400px;
+  box-shadow: 1px 1px 1px 1px grey;
+  margin:10px;
+}
+
+.progress-bar{
+	background-color: teal;
+	color: white;
+	padding: 5px;
+	box-shadow: 1px 1px 1px 1px grey;
+}
