@@ -2,16 +2,15 @@ import React from 'react';
 import QuestionModule from './QuestionModule.jsx'
 import ProgressBar from './ProgressBar.jsx'
 import "./css/styles.css"
-import questions from './questionBank.js'
-
+import $ from 'jquery'
 
 
 class App extends React.Component{
   constructor(props) {
   	super(props);
   	this.state = {
-      questions: questions,
-      q: "Somthing",
+      questions: {},
+      q: "Loading...",
       current: {level:1, set:1, qtype:1, q:1,chance:1,},
     };
     this.changeQuestion = this.changeQuestion.bind(this)
@@ -20,7 +19,6 @@ class App extends React.Component{
 
   changeSet(current){
     current.set = current.set += 1
-    console.log(current.set)
     current.qtype = 1
     current.q = 1
     current.chance = 1
@@ -45,8 +43,6 @@ class App extends React.Component{
       } else {
         // last chance
         if (cur.chance === 3) {
-/*          console.log('hit last chance. qtype: ' + cur.qtype)
-          if(cur.qtype === 3) console.log('last question + last chance')*/
           if (cur.q === 3) changeQType = true;
           cur.q += 1;
           cur.chance = 1;
@@ -70,17 +66,19 @@ class App extends React.Component{
   }
   
   let position = cur.level+'-'+'1'+'-'+cur.qtype+'-'+cur.q;
-  let question = questions[position]['chance'+cur.chance];
+  let question = this.state.questions[position]['chance'+cur.chance];
   this.setState({current:cur});
   this.setState({q:question});
 
 }
 
   componentDidMount() {
-    var question = questions["1-1-1-1"].chance1;  
-    console.log(question)  
-    var startLevel = this.state.current
-    this.setState({q:question})
+    $.get('/data/eorpooouoiojpjpwpopokpeopokpokepokpkpdodpofpokpkpekpkfp',(result)=>{
+       this.setState({questions:result})
+       let question = result["1-1-1-1"].chance1;     
+       this.setState({q:question})
+    })
+    let startLevel = this.state.current    
     this.setState({current:startLevel})
   }
  

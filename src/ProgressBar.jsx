@@ -22,6 +22,7 @@ class Chances extends React.Component {
 
     return (
     <div>Chances: {cTypes[4-(this.props.chance)+'']} </div>
+    
     )
   }
 }
@@ -30,9 +31,9 @@ class Chances extends React.Component {
 const ProgressBar = (props) =>(
     <div className="progress-bar"> 
       <QuestionType  qtype={ props.currentLevel.qtype}></QuestionType>
-      <p>Level: <progress max="9" value={props.currentLevel.level}></progress></p>
-      <p>Set: <progress max="9" value={props.currentLevel.set}></progress></p>
-      <p>Questions completed: <progress max="3" value={props.currentLevel.q -1}></progress></p>
+      <p>Level: {props.currentLevel.level}<progress max="9" value={props.currentLevel.level}></progress></p>
+      <p>Set: {props.currentLevel.set}<progress max="9" value={props.currentLevel.set}></progress></p>
+      <p>Questions completed:{props.currentLevel.q -1} <progress max="3" value={props.currentLevel.q -1}></progress></p>
       <Chances chance={props.currentLevel.chance}></Chances>
     </div>
     )
