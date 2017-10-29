@@ -16,7 +16,7 @@ class App extends React.Component{
     };
     this.changeQuestion = this.changeQuestion.bind(this)
     this.changeSet = this.changeSet.bind(this)
-//    this.change = this.change.bind(this)
+    this.changeLevel = this.changeLevel.bind(this)
     this.changeToCustomPosition = this.changeToCustomPosition.bind(this)
   }
 
@@ -28,14 +28,19 @@ class App extends React.Component{
     this.setState({current:current})
   }
 
-/*  change(current){
+  changeLevel(current){
     current.level = current.level += 1
-    current.set = current.set += 1
+    current.set = current.set = 1
     current.qtype = 1
     current.q = 1
     current.chance = 1
-    this.setState({current:current})
-  }*/
+    
+    let position = current.level+'-'+'1'+'-'+current.qtype+'-'+current.q;
+    let question = this.state.questions[position]['chance'+current.chance];
+    this.setState({current:current});
+    this.setState({q:question});
+
+  }
 
   changeToCustomPosition(result){
     let cur = this.state.current;
@@ -58,6 +63,11 @@ class App extends React.Component{
       let cur = this.state.current;
       let changeQType = false;
       if(this.changeToCustomPosition(result)){
+        return
+      }
+      console.log(cur)
+      if(cur.set === 3 && cur.qtype === 3 && cur.q === 3 && result ){
+        this.changeLevel(cur)
         return
       }
       
