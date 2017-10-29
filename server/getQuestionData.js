@@ -29,6 +29,7 @@ let info = function(data){
     let result = {};
   data.forEach(function(item){
     let id = [item.gsx$level.$t,
+
       item.gsx$set.$t,
       item.gsx$type.$t,
       item.gsx$question.$t].join('-')
@@ -39,8 +40,9 @@ let info = function(data){
     }
     result[id] = questions
   })
+  console.log(typeof result)
    return callback(result)
 }   
-  }
+  } 
 }
 

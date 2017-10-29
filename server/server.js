@@ -20,7 +20,7 @@ app.use(webpackDevMiddleware( compiler, {
 
 var questionData = function(){
    data.getData(function(result){
-   cache.put('questionData', JSON.stringify(result), 1000000, function(key, value) {
+   cache.put('questionData', JSON.stringify(result), 10000000, function(key, value) {
    console.log('dumped cached data');
     }); 
    })
@@ -29,7 +29,7 @@ var questionData = function(){
 questionData();
 
 app.use(bodyParser.json());
-app.get('/data/eorpooouoiojpjpwpopokpeopokpokepokpkpdodpofpokpkpekpkfp', function(req,res){
+app.get('/data', function(req,res){
 	var result = cache.get('questionData');
 	if(result === null){
         data.getData(function(result){
