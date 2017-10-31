@@ -21,13 +21,23 @@
           }
         }  
       },
-      {
-      test: /\.css$/,
-      use: [
-      'style-loader',
+      { test: /\.css$/,
+        use: [
+        'style-loader',
         'css-loader'
-
-      ]
+        ]
+    },  
+    { test: /\.(jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'img/',
+           //   publicPath: 'img/'
+            }
+          }
+        ]
     }
     ]
   },
@@ -40,8 +50,8 @@
       })
     ],
     output: {
-      filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, '/dist'),
       publicPath: '/'
     }
   };

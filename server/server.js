@@ -20,7 +20,7 @@ app.use(webpackDevMiddleware( compiler, {
 
 var questionData = function(){
    data.getData(function(result){
-   cache.put('questionData', JSON.stringify(result), 10000000, function(key, value) {
+   cache.put('questionData', JSON.stringify(result), 100000000, function(key, value) {
    console.log('dumped cached data');
     }); 
    })
@@ -33,10 +33,11 @@ app.get('/data', function(req,res){
 	var result = cache.get('questionData');
 	if(result === null){
         data.getData(function(result){
+          console.log(typeof result)
           res.send(result)
 	    }) 
 	} else {
-	 res.send(cache.get('questionData'))	
+	 res.send(JSON.parse(result))	
 	}
 });
 

@@ -1,15 +1,100 @@
-.q {
-  background-color: teal;
-  color: white;
-  padding: 5px;
-  width: 400px;
-  box-shadow: 1px 1px 1px 1px grey;
-  margin:10px;
+
+
+body{
+  background-image: url('../img/cute-ladybug.jpg');
+  font-family: 'Shadows Into Light', cursive;
+}
+
+:root {
+  --main-bg-color: #a29037;
+  --sub-bg-color: #71d10e;
+  --main-text-color: #cef0aa;
+  --light-text-color:#ffffff;
+  --p-text-size:25px;
+}
+
+@media only screen and (max-width: 800px) {
+
+.grid-1 {
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    --p-text-size:15px; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px auto auto 80px;
+    grid-gap: 10px;     
+    grid-template-areas:    "header"
+                            "progressBar"
+                            "main";
+                                                    
+                            
+    }
+}
+
+@media only screen and (min-width: 799px) {
+.grid-1 {
+  display: grid;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto;
+  grid-gap: 10px;
+  
+  grid-template-areas: "header   header   header"
+                       "progressBar main  main"
+                       "progressBar main  main"
+                      
+}
+}
+/* items */
+
+
+/* specific item styles */
+
+.menu {
+  grid-area: header;
+  background: var(--main-bg-color);
 }
 
 .progress-bar{
-	background-color: teal;
-	color: white;
+  grid-area: progressBar;
+}
+
+.q{
+  grid-area: main;
+}
+
+#heading-text {
+  color: var(--main-text-color);
+  font-style: bold;
+  margin-bottom: 30px !important;
+  margin-left:10px;
+}
+
+.q {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  padding: 5px;
+  font-size: var(--p-text-size);
+  
+}
+
+#currentPosition{
+  background-color: white;
+  color:red;
+  font-size:15px;
+  font-family: arial;
+  width:400px;
+  height: 100px;
+  overflow: auto;
+
+}
+
+.progress-bar{
+	background-color: var(--main-bg-color);
+	color: var(--main-text-color);
+  font-size: var(--p-text-size);
 	padding: 5px;
-	box-shadow: 1px 1px 1px 1px grey;
 }
